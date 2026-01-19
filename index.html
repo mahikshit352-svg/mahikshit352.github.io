@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahikshit Reddy Gade - Java Full Stack Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        /* Hero Section */
+        #home {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin-bottom: 2rem;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        #home h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        #home .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #667eea;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #667eea;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #about {
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .skill-category li:last-child {
+            border-bottom: none;
+        }
+
+        /* Experience Section */
+        #experience {
+            background: #f8f9fa;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .experience-item h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .company {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .duration {
+            color: #888;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            margin-left: 1.5rem;
+        }
+
+        .experience-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .education-item h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        /* Certification Section */
+        #certifications {
+            background: #f8f9fa;
+        }
+
+        .cert-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cert-item h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item a {
+            color: #333;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .contact-item a:hover {
+            color: #667eea;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #home h1 {
+                font-size: 2rem;
+            }
+
+            #home .subtitle {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <img src="images/profile.jpg" alt="Mahikshit Reddy Gade" class="profile-photo">
+        <h1>Mahikshit Reddy Gade</h1>
+        <p class="subtitle">Senior Java Full Stack Developer | AWS Certified Solutions Architect</p>
+        <a href="#about" class="btn">Learn More</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <p>I am a Senior Java Full Stack Developer with 8 years of professional experience architecting, developing, and deploying enterprise-grade applications across healthcare, financial services, insurance, and e-commerce sectors. With extensive expertise in modern web technologies including React.js, Angular, and Spring Boot, I specialize in building scalable microservices architectures and cloud-native solutions. As an AWS Certified Solutions Architect, I bring deep knowledge of cloud platforms and DevOps practices to deliver high-performance, secure, and compliant applications.</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <ul>
+                    <li>Java (8/11/17)</li>
+                    <li>JavaScript (ES6+)</li>
+                    <li>TypeScript</li>
+                    <li>Python</li>
+                    <li>SQL & PL/SQL</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Frontend Technologies</h3>
+                <ul>
+                    <li>React.js (Hooks, Redux, Context API)</li>
+                    <li>Angular (v4+)</li>
+                    <li>HTML5, CSS3, SASS</li>
+                    <li>Bootstrap, Material-UI, Tailwind</li>
+                    <li>Responsive Design</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Backend Frameworks</h3>
+                <ul>
+                    <li>Spring Boot & Spring MVC</li>
+                    <li>Spring Security & Spring Data JPA</li>
+                    <li>Hibernate ORM</li>
+                    <li>RESTful Web Services</li>
+                    <li>GraphQL</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Microservices & Cloud</h3>
+                <ul>
+                    <li>Spring Cloud (Eureka, Gateway, Config)</li>
+                    <li>AWS (EC2, S3, Lambda, RDS, EKS)</li>
+                    <li>Azure (App Service, AKS, Cosmos DB)</li>
+                    <li>Docker & Kubernetes</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Databases</h3>
+                <ul>
+                    <li>Oracle, MySQL, PostgreSQL, SQL Server</li>
+                    <li>MongoDB, Cassandra, Couchbase</li>
+                    <li>Redis</li>
+                    <li>Query Optimization & Indexing</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>DevOps & Tools</h3>
+                <ul>
+                    <li>Jenkins, GitLab CI/CD, GitHub Actions</li>
+                    <li>Apache Kafka, RabbitMQ</li>
+                    <li>JUnit, Mockito</li>
+                    <li>Git, Maven, Gradle</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Professional Experience</h2>
+
+        <div class="experience-item">
+            <h3>Java Full Stack Developer</h3>
+            <p class="company">Prime Healthcare - USA</p>
+            <p class="duration">October 2023 - Present</p>
+            <p><strong>Project:</strong> Epic EMR Transition - Integration & Interoperability Services</p>
+            <ul>
+                <li>Designed and developed Spring Boot microservices enabling secure integration between Epic EMR and downstream clinical systems</li>
+                <li>Built RESTful APIs for patient, appointment, orders, and encounter workflows with comprehensive validation</li>
+                <li>Implemented event-driven processing using Kafka/RabbitMQ for reliable asynchronous data exchange</li>
+                <li>Developed transformation layers to normalize payloads and enforce data contract consistency</li>
+                <li>Implemented security controls using Spring Security with OAuth2/JWT and RBAC</li>
+                <li>Built monitoring dashboards using Prometheus/Grafana to track latency, throughput, and error rates</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Java Developer</h3>
+            <p class="company">Federal Investments - USA</p>
+            <p class="duration">August 2021 - September 2023</p>
+            <p><strong>Project:</strong> Investment Performance Measurement & Analytics APIs</p>
+            <ul>
+                <li>Designed high-performance REST APIs using Spring Boot for performance and analytics capabilities</li>
+                <li>Built scalable batch pipelines to process large datasets and calculate investment returns</li>
+                <li>Implemented data ingestion and transformation layers to standardize downstream datasets</li>
+                <li>Developed aggregation services for portfolio-level and benchmark-level calculations</li>
+                <li>Containerized services using Docker and supported Kubernetes deployments</li>
+                <li>Created comprehensive unit and integration tests using JUnit5/Mockito</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="education-grid">
+            <div class="education-item">
+                <h3>Master of Science</h3>
+                <p><strong>Information Systems and Technology</strong></p>
+                <p>California State University San Bernardino</p>
+                <p>San Bernardino, CA</p>
+            </div>
+
+            <div class="education-item">
+                <h3>Bachelor of Technology</h3>
+                <p><strong>Computer Science and Engineering</strong></p>
+                <p>Jawaharlal Nehru Technological University</p>
+                <p>Hyderabad, India</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <div class="cert-item">
+            <h3>AWS Certified Solutions Architect - Associate</h3>
+            <p>Amazon Web Services</p>
+            <p><strong>Issued:</strong> January 2025</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h3>Email</h3>
+                <a href="mailto:mahikshit352@gmail.com">mahikshit352@gmail.com</a>
+            </div>
+
+            <div class="contact-item">
+                <h3>Phone</h3>
+                <a href="tel:+19092483411">+1 (909) 248-3411</a>
+            </div>
+
+            <div class="contact-item">
+                <h3>LinkedIn</h3>
+                <a href="http://www.linkedin.com/in/mahikshit-reddy-7577a8277" target="_blank">linkedin.com/in/mahikshit-reddy-7577a8277</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Mahikshit Reddy Gade. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active navigation item on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
