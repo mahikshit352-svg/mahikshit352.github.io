@@ -249,6 +249,20 @@
             animation: slideInDown 1s ease;
         }
 
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end);
+            display: inline-block;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
         .hero-content h2 {
             font-size: 2rem;
             color: #3498db;
@@ -757,7 +771,7 @@
     <div class="main-content" id="mainContent">
         <section id="home" class="hero">
             <div class="hero-content">
-                <h1>Hi, I'm Mahikshit Reddy Gade</h1>
+              <h1><span class="typewriter">Hi, I'm Mahikshit Reddy Gade</span></h1>
                 <h2>Java Full Stack Developer</h2>
                 <p>Crafting secure, scalable, and innovative cloud-native solutions across healthcare, banking, retail, and utilities sectors.</p>
                 <div class="btn-group">
