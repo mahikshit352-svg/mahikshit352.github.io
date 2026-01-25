@@ -188,7 +188,7 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
             position: relative;
-            cursor: pointer;
+            cursor: default;
         }
 
         .sidebar-logo img {
@@ -210,24 +210,7 @@
             cursor: pointer;
         }
 
-        .sidebar-logo::after {
-            content: '\f030';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            background: #3498db;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
+        
 
         .sidebar-header h2 {
             color: #2c3e50;
@@ -866,10 +849,8 @@
     <!-- Sidebar Navigation -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="sidebar-logo" id="logoContainer">
-    <i class="fas fa-user-tie" id="defaultIcon" style="display: none;"></i>
-    <img id="profileImage" src="cropped-my photo.jpg" alt="Mahikshit Reddy">
-    <input type="file" id="photoUpload" accept="image/*" onchange="handlePhotoUpload(event)">
+           <div class="sidebar-logo" id="logoContainer">
+    <img id="profileImage" src="your-photo.jpg" alt="Mahikshit Reddy">
 </div>
             <h2>Mahikshit Reddy</h2>
             <p>Full Stack Developer</p>
@@ -1144,21 +1125,7 @@
 
     <script>
         // Photo Upload Handler
-        function handlePhotoUpload(event) {
-            const file = event.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const profileImage = document.getElementById('profileImage');
-                    const defaultIcon = document.getElementById('defaultIcon');
-                    
-                    profileImage.src = e.target.result;
-                    profileImage.style.display = 'block';
-                    defaultIcon.style.display = 'none';
-                };
-                reader.readAsDataURL(file);
-            }
-        }
+      
 
         // Theme Toggle
         function toggleTheme() {
